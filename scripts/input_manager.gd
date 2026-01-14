@@ -45,7 +45,7 @@ func _handle_mouse_input(event: InputEventMouseButton) -> void:
         attack.emit()
     elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
         var mouse_pos = get_viewport().get_mouse_position()
-        if Input.is_key_pressed(KEY_CONTROL):
+        if Input.is_key_pressed(KEY_CTRL):
             deploy_scout.emit(mouse_pos)
         else:
             block.emit(true)
