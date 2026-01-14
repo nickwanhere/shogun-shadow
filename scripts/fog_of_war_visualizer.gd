@@ -3,7 +3,6 @@ extends Node2D
 class_name FogOfWarVisualizer
 
 var tile_size: Vector2i = Vector2i(32, 32)
-var fog_layer: TileMapLayer
 var overlay_sprite: Sprite2D
 var fog_texture: ImageTexture
 var fog_image: Image
@@ -35,8 +34,7 @@ func initialize_fog_system() -> void:
 func create_fog_visuals() -> void:
     fog_image = Image.create(map_size.x * tile_size.x, map_size.y * tile_size.y, false, Image.FORMAT_RGBA8)
     fog_image.fill(Color(0, 0, 0, 0.8))
-    fog_texture = ImageTexture.new()
-    fog_texture.set_image(fog_image)
+    fog_texture = ImageTexture.create_from_image(fog_image)
     
     overlay_sprite = Sprite2D.new()
     overlay_sprite.texture = fog_texture
