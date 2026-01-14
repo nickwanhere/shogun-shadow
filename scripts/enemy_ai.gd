@@ -13,7 +13,7 @@ const ATTACK_RANGE_TILES: int = 5
 
 signal ai_decision_made(decision: Dictionary)
 
-@onready var command_system: ArmyCommandSystem = get_parent()
+var command_system: ArmyCommandSystem
 
 func _ready() -> void:
     setup_ai()

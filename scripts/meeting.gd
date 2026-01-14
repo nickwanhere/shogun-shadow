@@ -3,6 +3,8 @@ extends Control
 signal meeting_decision_selected(option_index: int)
 
 var meeting_active: bool = false
+var is_active: bool = false
+
 var meeting_timer: float = 30.0
 var current_meeting_data: Dictionary = {}
 var game_speed_before_meeting: float = 1.0
@@ -18,6 +20,7 @@ func _ready() -> void:
 func start_meeting(meeting_data: Dictionary) -> void:
     current_meeting_data = meeting_data
     meeting_active = true
+    is_active = true
     meeting_timer = 30.0
     visible = true
     
@@ -152,6 +155,7 @@ func end_meeting() -> void:
             apply_decision_consequences(options[selected_option_index])
     
     meeting_active = false
+    is_active = false
     visible = false
     Engine.time_scale = game_speed_before_meeting
     set_process(false)
@@ -166,15 +170,6 @@ func meeting_timer_expired() -> void:
         select_option(random_index)
     else:
         end_meeting()
-
-func end_meeting() -> void:
-    meeting_active = false
-    visible = false
-    Engine.time_scale = game_speed_before_meeting
-    set_process(false)
-    
-    GameManager.game_state["current_meeting"] = null
-    GameManager.log_event("meeting_end", {})
 
 func get_default_meeting_data() -> Dictionary:
     return {

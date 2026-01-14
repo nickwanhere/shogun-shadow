@@ -5,6 +5,7 @@ const BlockVisualizer = preload("res://scripts/block_visualizer.gd")
 const DamageIndicator = preload("res://scripts/damage_indicator.gd")
 const FogOfWarVisualizer = preload("res://scripts/fog_of_war_visualizer.gd")
 const Scout = preload("res://scripts/enhanced_scout.gd")
+const Meeting = preload("res://scripts/meeting.gd")
 
 @onready var world = $World
 @onready var tile_map = $World/TileMap
@@ -26,6 +27,7 @@ var information_display_ui
 var active_skill_system: ActiveSkillSystem
 var army_command_system: ArmyCommandSystem
 var enemy_ai: EnemyAI
+var meeting_system: Meeting
 var armies: Array = []
 var scouts: Array = []
 var gold: int = 1000
@@ -36,6 +38,7 @@ func _ready() -> void:
     setup_fog_system()
     setup_scout_system()
     setup_information_system()
+    setup_meeting_system()
     setup_skill_system()
     setup_army_system()
     setup_enemy_ai()
@@ -104,6 +107,11 @@ func setup_information_system() -> void:
     information_display_ui = InformationDisplay.new()
     $GameUI.add_child(information_display_ui)
 
+func setup_meeting_system() -> void:
+    meeting_system = Meeting.new()
+    meeting_system.connect("meeting_decision_selected", _on_meeting_decision_selected)
+    $GameUI.add_child(meeting_system)
+
 func setup_army_system() -> void:
     army_command_system = ArmyCommandSystem.new()
     army_command_system.connect("army_moved", _on_army_moved)
@@ -115,6 +123,7 @@ func setup_army_system() -> void:
 
 func setup_enemy_ai() -> void:
     enemy_ai = EnemyAI.new()
+    enemy_ai.command_system = army_command_system
     enemy_ai.connect("ai_decision_made", _on_ai_decision_made)
     add_child(enemy_ai)
 
@@ -142,7 +151,7 @@ func setup_connections() -> void:
     InputManager.move_player.connect(_on_move_player)
     InputManager.attack.connect(_on_attack)
     InputManager.block.connect(_on_block)
-    InputManager.call_meeting.connect(_on_call_meeting))
+    InputManager.call_meeting.connect(_on_call_meeting)
     InputManager.deploy_scout.connect(_on_deploy_scout)
     InputManager.toggle_scout_ui.connect(_on_toggle_scout_ui)
     InputManager.toggle_info_ui.connect(_on_toggle_info_ui)
@@ -200,7 +209,9 @@ func _on_block(should_block: bool) -> void:
     GameManager.log_event("block", {"blocking": should_block})
 
 func _on_call_meeting() -> void:
-    GameManager.log_event("meeting", {"type": "call_meeting"})
+    if meeting_system:
+        meeting_system.start_meeting(meeting_system.get_default_meeting_data())
+        GameManager.log_event("meeting", {"type": "call_meeting"})
 
 func _on_scout_deployed(scout: Scout) -> void:
     scouts.append(scout)
@@ -273,6 +284,9 @@ func _on_attack_order_executed(attacker: Army, defender: Army, result: Dictionar
         "defender": defender.army_id,
         "result": result.type
     })
+
+func _on_meeting_decision_selected(option_index: int) -> void:
+    GameManager.log_event("meeting_decision", {"option_index": option_index})
 
 func _on_ai_decision_made(decision: Dictionary) -> void:
     if information_display_ui:
