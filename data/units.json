@@ -1,0 +1,37 @@
+{
+  "units": [
+    {
+      "unit_id": 1,
+      "name": "Infantry",
+      "type": "infantry",
+      "health": 100,
+      "attack_power": 10,
+      "defense": 5,
+      "movement_speed": 1.0,
+      "cost_gold": 10,
+      "cost_food": 0
+    },
+    {
+      "unit_id": 2,
+      "name": "Cavalry",
+      "type": "cavalry",
+      "health": 120,
+      "attack_power": 15,
+      "defense": 8,
+      "movement_speed": 1.5,
+      "cost_gold": 25,
+      "cost_food": 0
+    },
+    {
+      "unit_id": 3,
+      "name": "Archer",
+      "type": "archers",
+      "health": 80,
+      "attack_power": 12,
+      "defense": 3,
+      "movement_speed": 0.8,
+      "cost_gold": 15,
+      "cost_food": 0
+    }
+  ]
+}

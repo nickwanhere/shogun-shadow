@@ -1,0 +1,26 @@
+{
+  "skills": [
+    {
+      "skill_id": 1,
+      "name": "Tactical Insight",
+      "description": "+10% information accuracy per level",
+      "skill_type": "passive",
+      "magnitude": 0.1,
+      "range": 0.0,
+      "level": 1,
+      "max_level": 5,
+      "carry_over_percentage": 0.5
+    },
+    {
+      "skill_id": 2,
+      "name": "Charisma",
+      "description": "+5% ally combat effectiveness per level",
+      "skill_type": "passive",
+      "magnitude": 0.05,
+      "range": 5.0,
+      "level": 1,
+      "max_level": 5,
+      "carry_over_percentage": 0.6
+    }
+  ]
+}

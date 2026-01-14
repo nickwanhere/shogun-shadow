@@ -1,0 +1,289 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8y8p6n0r9x1b"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_x8k2f"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_x8k2f")
+
+[node name="GameUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PerchInterface" type="Panel" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+grow_horizontal = 0
+grow_vertical = 2
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="TimeLabel" type="Label" parent="GameUI/PerchInterface"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 10.0
+offset_right = 75.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Time Remaining: 30 seconds"
+horizontal_alignment = 1
+
+[node name="SituationPanel" type="RichTextLabel" parent="GameUI/PerchInterface"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 60.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Current Battlefield Situation"
+fit_content = true
+
+[node name="InfoPanel" type="RichTextLabel" parent="GameUI/PerchInterface"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 220.0
+offset_right = 150.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Available Information"
+fit_content = true
+
+[node name="OptionsPanel" type="RichTextLabel" parent="GameUI/PerchInterface"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 380.0
+offset_right = 150.0
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Decision Options"
+fit_content = true
+
+[node name="SkillPanel" type="Panel" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -150.0
+offset_right = 260.0
+offset_bottom = -10.0
+grow_vertical = 0
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="InformationPanel" type="Panel" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -250.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="ScoutDeployment" type="Panel" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -250.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="FogInfo" type="Label" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 250.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Fog of War: Active"
+modulate = Color(0.5, 0.5, 0.5, 0.8)
+
+[node name="ActiveSkillPanel" type="Panel" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 65.0
+offset_right = 250.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 0
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="ManaBar" type="Panel" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 110.0
+offset_right = 250.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 0
+modulate = Color(1, 1, 1, 0.9)
+
+[node name="ManaLabel" type="Label" parent="GameUI/ManaBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Mana: 100/100"
+
+[node name="ManaProgress" type="ProgressBar" parent="GameUI/ManaBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.0
+anchor_right = 1.0
+offset_top = 25.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+max_value = 100.0
+show_percentage = false
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="World"]
+
+[node name="Armies" type="Node2D" parent="World"]
+
+[node name="ArmyCommandSystem" type="Node2D" parent="World"]
+
+[node name="EnemyAI" type="Node2D" parent="World"]
+
+[node name="PlayerCharacter" type="CharacterBody2D" parent="World"]
+
+[node name="HealthBar" type="Control" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -160.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HealthLabel" type="Label" parent="GameUI/HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Health: 100/100"
+horizontal_alignment = 1
+
+[node name="HealthProgressBar" type="ProgressBar" parent="GameUI/HealthBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.0
+anchor_right = 1.0
+offset_top = 25.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+max_value = 100.0
+show_percentage = false
+
+[node name="StaminaBar" type="Control" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -160.0
+offset_top = 55.0
+offset_right = -10.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="StaminaLabel" type="Label" parent="GameUI/StaminaBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Stamina: 100/100"
+horizontal_alignment = 1
+
+[node name="StaminaProgressBar" type="ProgressBar" parent="GameUI/StaminaBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.0
+anchor_right = 1.0
+offset_top = 25.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+max_value = 100.0
+show_percentage = false
+
+[node name="Effects" type="Node2D" parent="World"]
+
+[node name="Audio" type="Node" parent="."]
